@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO2 e Aquecimento Global</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variáveis e reset */
+        :root {
+            --primary-color: #2c7873;
+            --secondary-color: #76b39d;
+            --accent-color: #f5f5f5;
+            --text-color: #333;
+            --light-text: #f8f8f8;
+            --dark-bg: #1a1a2e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            line-height: 1.6;
+        }
+        
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .event-title h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .event-title h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Seções gerais */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+        }
+        
+        /* Seção da turma */
+        .team-section {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .team-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .team-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .team-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .team-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .testimonial {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial .author {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        /* Seção criativa - Globo */
+        .globe-section {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            text-align: center;
+            border-radius: 10px;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .globe-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 2rem;
+        }
+        
+        .globe {
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/600px-Blue_Marble_2002.png') no-repeat center center;
+            background-size: cover;
+            border-radius: 50%;
+            box-shadow: 0 0 25px rgba(100, 200, 255, 0.5);
+            animation: rotate 30s linear infinite;
+            position: relative;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .co2-counter {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .counter-value {
+            font-weight: bold;
+            color: #ff6b6b;
+            font-size: 2rem;
+        }
+        
+        /* Seção Quiz */
+        .quiz-section {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .quiz-progress {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .quiz-question {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (min-width: 600px) {
+            .quiz-options {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .quiz-option {
+            padding: 1rem;
+            background-color: var(--accent-color);
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .quiz-option:hover {
+            background-color: #e8e8e8;
+        }
+        
+        .quiz-option.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(44, 120, 115, 0.1);
+        }
+        
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .quiz-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-btn:hover {
+            background-color: #245a56;
+        }
+        
+        .quiz-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .quiz-results {
+            text-align: center;
+            display: none;
+        }
+        
+        .result-score {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        /* Infográfico */
+        .infographic {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .info-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+        
+        .info-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .info-item h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        /* Comparação */
+        .comparison {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .comparison-item {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .comparison-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        /* Rodapé */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .credits {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="header-content">
+            <div class="event-title">
+                <h1>Mudanças Climáticas e Sustentabilidade</h1>
+                <h2>Emissão de CO2 e Aquecimento Global</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#turma">Nossa Turma</a></li>
+                    <li><a href="#globo">Emissões em Tempo Real</a></li>
+                    <li><a href="#quiz">Quiz Interativo</a></li>
+                    <li><a href="#solucoes">Soluções</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção da Turma -->
+        <section id="turma" class="team-section">
+            <h2 class="section-title">Nossa Turma e Projeto</h2>
+            <div class="team-info">
+                <div class="team-text">
+                    <h3>Turma 1º Técnico- Escola Sustentável</h3>
+                    <h4>Projeto: CO2 e o Futuro do Planeta</h4>
+                    <p>Nosso projeto tem como objetivo conscientizar sobre os impactos das emissões de dióxido de carbono no aquecimento global e nas mudanças climáticas. Através de pesquisas, experimentos e ações práticas, buscamos entender como nossas atividades cotidianas contribuem para esse problema e o que podemos fazer para reduzir nossa pegada de carbono.</p>
+                    <p>Durante o desenvolvimento do projeto, medimos as emissões da nossa escola, implementamos um sistema de compostagem e criamos uma campanha para reduzir o uso de plástico descartável.</p>
+                </div>
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=600" alt="Turma trabalhando no projeto">
+                </div>
+            </div>
+            
+            <div class="testimonials">
+                <div class="testimonial">
+                    <p>"Participar deste projeto mudou minha perspectiva sobre o meio ambiente. Agora entendo como minhas ações impactam o planeta e o que posso fazer para mudar."</p>
+                    <div class="author">- Maria, 14 anos</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Foi incrível aprender na prática sobre aquecimento global. O que mais me impressionou foi descobrir como pequenas mudanças podem fazer uma grande diferença."</p>
+                    <div class="author">- João, 15 anos</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Como professor, fiquei impressionado com o engajamento dos alunos. Eles não apenas aprenderam sobre o problema, mas se tornaram agentes de mudança em suas famílias e comunidade."</p>
+                    <div class="author">- Prof. Felipe Ishara</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção do Globo -->
+        <section id="globo" class="globe-section">
+            <h2 class="section-title">Emissões de CO2 em Tempo Real</h2>
+            <div class="globe-container">
+                <div class="globe"></div>
+            </div>
+            <div class="co2-counter">
+                <p>Estimativa de toneladas de CO2 emitidas no planeta hoje:</p>
+                <p class="counter-value">103.456.789</p>
+                <p>e continuam aumentando...</p>
+            </div>
+        </section>
+
+        <!-- Seção Quiz -->
+        <section id="quiz" class="quiz-section">
+            <h2 class="section-title">Quiz Interativo: Teste Seu Conhecimento</h2>
+            <div class="quiz-container">
+                <div class="quiz-progress">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                
+                <div class="quiz-question" id="question">Pergunta aparecerá aqui</div>
+                
+                <div class="quiz-options" id="options">
+                    <!-- Opções serão inseridas via JavaScript -->
+                </div>
+                
+                <div class="quiz-navigation">
+                    <button class="quiz-btn" id="prev-btn" disabled>Anterior</button>
+                    <button class="quiz-btn" id="next-btn">Próxima</button>
+                </div>
+                
+                <div class="quiz-results" id="results">
+                    <h3>Quiz Concluído!</h3>
+                    <p class="result-score">Sua pontuação: <span id="score">0</span> de <span id="total-questions">0</span></p>
+                    <p id="result-message"></p>
+                    <button class="quiz-btn" id="restart-btn">Refazer Quiz</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Soluções -->
+        <section id="solucoes">
+            <h2 class="section-title">Soluções e Alternativas</h2>
+            
+            <div class="infographic">
+                <div class="info-item">
+                    <i class="fas fa-sun"></i>
+                    <h3>Energia Renovável</h3>
+                    <p>Fontes de energia como solar, eólica e hidrelétrica emitem muito menos CO2 comparedas com combustíveis fósseis.</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-tree"></i>
+                    <h3>Reflorestamento</h3>
+                    <p>Árvores absorvem CO2 da atmosfera, tornando o reflorestamento uma das melhores estratégias para combater as emissões.</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-bus"></i>
+                    <h3>Transporte Sustentável</h3>
+                    <p>Transporte público, bicicletas e veículos elétricos reduzem significativamente as emissões de carbono.</p>
+                </div>
+            </div>
+            
+            <div class="comparison">
+                <div class="comparison-item">
+                    <h3>Antes: Alto Nível de Emissões</h3>
+                    <ul>
+                        <li>Dependência de combustíveis fósseis</li>
+                        <li>Desmatamento intensivo</li>
+                        <li>Transporte baseado em veículos individuais</li>
+                        <li>Industrias sem controle de poluição</li>
+                        <li>Agricultura não sustentável</li>
+                    </ul>
+                </div>
+                <div class="comparison-item">
+                    <h3>Depois: Baixo Nível de Emissões</h3>
+                    <ul>
+                        <li>Transição para energias renováveis</li>
+                        <li>Reflorestamento e conservação</li>
+                        <li>Transporte público e mobilidade sustentável</li>
+                        <li>Industrias com tecnologia verde</li>
+                        <li>Agricultura regenerativa e sustentável</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-content">
+            <p>Site educativo sobre Emissão de CO2 e Aquecimento Global</p>
+            <div class="credits">
+                <p>Desenvolvido por Pedro Henrique Florencio - Escola Sustentável</p>
+                <p>Orientado pelo Prof. Felipe Ishara  | 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz questions and answers
+        const quizQuestions = [
+            {
+                question: "Qual é o principal gás responsável pelo aquecimento global?",
+                options: ["Metano (CH4)", "Dióxido de Carbono (CO2)", "Óxido Nitroso (N2O)", "Clorofluorcarbonos (CFCs)"],
+                correct: 1
+            },
+            {
+                question: "Qual setor é o maior emissor de CO2 no mundo?",
+                options: ["Transporte", "Produção de Energia", "Agricultura", "Indústria"],
+                correct: 1
+            },
+            {
+                question: "Qual destas é uma fonte de energia renovável?",
+                options: ["Carvão", "Gás Natural", "Energia Solar", "Petróleo"],
+                correct: 2
+            },
+            {
+                question: "Quantos graus Celsius a temperatura global já aumentou desde a era pré-industrial?",
+                options: ["0.5°C", "1.0°C", "1.5°C", "2.0°C"],
+                correct: 2
+            },
+            {
+                question: "Qual destas ações ajuda mais a reduzir sua pegada de carbono?",
+                options: ["Comprar produtos locais", "Usar transportes públicos", "Reduzir consumo de carne", "Todas as anteriores"],
+                correct: 3
+            }
+        ];
+
+        // Quiz state variables
+        let currentQuestion = 0;
+        let userAnswers = Array(quizQuestions.length).fill(null);
+        let quizCompleted = false;
+
+        // DOM elements
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const progressBar = document.getElementById('progress-bar');
+        const prevButton = document.getElementById('prev-btn');
+        const nextButton = document.getElementById('next-btn');
+        const resultsElement = document.getElementById('results');
+        const scoreElement = document.getElementById('score');
+        const totalQuestionsElement = document.getElementById('total-questions');
+        const resultMessageElement = document.getElementById('result-message');
+        const restartButton = document.getElementById('restart-btn');
+
+        // Initialize quiz
+        function initQuiz() {
+            showQuestion();
+            updateProgressBar();
+            updateNavigation();
+            
+            // Add event listeners
+            prevButton.addEventListener('click', goToPreviousQuestion);
+            nextButton.addEventListener('click', goToNextQuestion);
+            restartButton.addEventListener('click', restartQuiz);
+        }
+
+        // Show current question
+        function showQuestion() {
+            const question = quizQuestions[currentQuestion];
+            questionElement.textContent = question.question;
+            
+            // Clear previous options
+            optionsElement.innerHTML = '';
+            
+            // Add new options
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('quiz-option');
+                if (userAnswers[currentQuestion] === index) {
+                    optionElement.classList.add('selected');
+                }
+                optionElement.textContent = option;
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsElement.appendChild(optionElement);
+            });
+        }
+
+        // Select an option
+        function selectOption(optionIndex) {
+            userAnswers[currentQuestion] = optionIndex;
+            showQuestion();
+            updateNavigation();
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = ((currentQuestion + 1) / quizQuestions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Update navigation buttons
+        function updateNavigation() {
+            prevButton.disabled = currentQuestion === 0;
+            
+            if (currentQuestion === quizQuestions.length - 1) {
+                nextButton.textContent = 'Finalizar';
+            } else {
+                nextButton.textContent = 'Próxima';
+            }
+            
+            if (currentQuestion === quizQuestions.length - 1 && userAnswers[currentQuestion] !== null) {
+                nextButton.disabled = false;
+            } else if (userAnswers[currentQuestion] === null) {
+                nextButton.disabled = true;
+            } else {
+                nextButton.disabled = false;
+            }
+        }
+
+        // Go to next question
+        function goToNextQuestion() {
+            if (currentQuestion < quizQuestions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+                updateProgressBar();
+                updateNavigation();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        // Go to previous question
+        function goToPreviousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+                updateProgressBar();
+                updateNavigation();
+            }
+        }
+
+        // Finish quiz and show results
+        function finishQuiz() {
+            quizCompleted = true;
+            
+            // Calculate score
+            const score = userAnswers.reduce((total, answer, index) => {
+                return total + (answer === quizQuestions[index].correct ? 1 : 0);
+            }, 0);
+            
+            // Show results
+            scoreElement.textContent = score;
+            totalQuestionsElement.textContent = quizQuestions.length;
+            
+            // Set message based on score
+            if (score === quizQuestions.length) {
+                resultMessageElement.textContent = 'Parabéns! Você é um expert em emissões de CO2!';
+            } else if (score >= quizQuestions.length * 0.7) {
+                resultMessageElement.textContent = 'Muito bom! Você sabe bastante sobre o tema.';
+            } else if (score >= quizQuestions.length * 0.5) {
+                resultMessageElement.textContent = 'Bom trabalho! Mas ainda há mais para aprender.';
+            } else {
+                resultMessageElement.textContent = 'Continue aprendendo sobre emissões de CO2 e aquecimento global!';
+            }
+            
+            // Hide quiz, show results
+            document.querySelector('.quiz-progress').style.display = 'none';
+            document.querySelector('.quiz-question').style.display = 'none';
+            document.querySelector('.quiz-options').style.display = 'none';
+            document.querySelector('.quiz-navigation').style.display = 'none';
+            resultsElement.style.display = 'block';
+        }
+
+        // Restart quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            userAnswers = Array(quizQuestions.length).fill(null);
+            quizCompleted = false;
+            
+            // Show quiz elements
+            document.querySelector('.quiz-progress').style.display = 'block';
+            document.querySelector('.quiz-question').style.display = 'block';
+            document.querySelector('.quiz-options').style.display = 'grid';
+            document.querySelector('.quiz-navigation').style.display = 'flex';
+            resultsElement.style.display = 'none';
+            
+            // Reset quiz
+            showQuestion();
+            updateProgressBar();
+            updateNavigation();
+        }
+
+        // Simulate real-time CO2 emissions
+        function updateCO2Counter() {
+            const counterElement = document.querySelector('.counter-value');
+            let currentValue = 103456789;
+            
+            setInterval(() => {
+                // Increase by approximately 1,000 tons per second (realistic estimate)
+                currentValue += 1000;
+                counterElement.textContent = currentValue.toLocaleString('pt-BR');
+            }, 1000);
+        }
+
+        // Initialize when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            initQuiz();
+            updateCO2Counter();
+        });
+    </script>
+</body>
+</html>
